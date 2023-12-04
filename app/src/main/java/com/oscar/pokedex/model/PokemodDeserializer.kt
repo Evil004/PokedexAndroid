@@ -1,6 +1,4 @@
-package com.oscar.pokedex.model
-
-import com.google.gson.GsonBuilder
+package com.oscar.pokedex.model;
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
@@ -11,18 +9,7 @@ import com.oscar.pokedex.model.data.Stat
 import java.lang.reflect.Type
 
 
-
-
-fun test(json: String): Pokemon {
-    val gsonBuilder = GsonBuilder();
-    gsonBuilder.registerTypeAdapter(Pokemon::class.java, PokemonDeserializer())
-    val gson = gsonBuilder.create();
-
-    return gson.fromJson(json, Pokemon::class.java)
-}
-
 class PokemonDeserializer : JsonDeserializer<Pokemon> {
-    @OptIn(ExperimentalStdlibApi::class)
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type,
@@ -36,27 +23,11 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
         val name = jsonObject.get("name").asString
         val weight = jsonObject.get("weight").asFloat / 10
         val height = jsonObject.get("height").asFloat / 10
-        val statsTmp = jsonObject.get("stats").asJsonArray
 
-        val sprite = jsonObject.get("sprites").asJsonObject
-            .get("other").asJsonObject
-            .get("official-artwork").asJsonObject
-            .get("front_default").asString
+        val spriteUrl = getSpriteUrl(jsonObject)
 
 
-        val statMap = mutableMapOf<Stat, Int>()
-
-
-        statsTmp.forEach() {
-            val statJsonObject = it.asJsonObject
-
-            val baseStat = statJsonObject.get("base_stat").asInt
-            val statName = statJsonObject.get("stat").asJsonObject.get("name").asString
-
-
-            statMap.put(Stat.getStat(jsonName = statName), baseStat)
-
-        }
+        val statMap = getStatsMap(jsonObject)
 
         val typesTmp = jsonObject.get("types").asJsonArray;
 
@@ -83,16 +54,40 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
             height = height,
             primaryType = primaryType,
             secondaryType = secondaryType,
-            spriteUrl = sprite
+            spriteUrl = spriteUrl
         )
 
     }
 
+    private fun getStatsMap(jsonObject: JsonObject): MutableMap<Stat, Int> {
+        val statMap = mutableMapOf<Stat, Int>()
 
-}
+        val statsTmp = jsonObject.get("stats").asJsonArray
 
-private fun getTypeFromJsonObject(typeObj: JsonObject): PokemonType {
-    val typeString = typeObj.get("type").asJsonObject.get("name").asString
+        statsTmp.forEach() {
+            val statJsonObject = it.asJsonObject
 
-    return PokemonType.valueOf(typeString.uppercase())
+            val baseStat = statJsonObject.get("base_stat").asInt
+            val statName = statJsonObject.get("stat").asJsonObject.get("name").asString
+
+
+            statMap.put(Stat.getStat(jsonName = statName), baseStat)
+
+        }
+        return statMap
+    }
+
+    private fun getSpriteUrl(jsonObject: JsonObject): String {
+        val sprite = jsonObject.get("sprites").asJsonObject
+            .get("other").asJsonObject
+            .get("official-artwork").asJsonObject
+            .get("front_default").asString
+        return sprite
+    }
+
+    private fun getTypeFromJsonObject(typeObj: JsonObject): PokemonType {
+        val typeString = typeObj.get("type").asJsonObject.get("name").asString
+
+        return PokemonType.valueOf(typeString.uppercase())
+    }
 }

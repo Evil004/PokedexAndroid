@@ -14,16 +14,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 import com.oscar.pokedex.view.Components.PokemonViewTopBar
 import com.oscar.pokedex.view.Components.HeightAndWeightComopnent
+import com.oscar.pokedex.view.Components.LoadingComponent
 import com.oscar.pokedex.view.Components.PokemonSpriteView
 import com.oscar.pokedex.view.Components.StatsComponent
 import com.oscar.pokedex.view.Components.TypesComponent
@@ -32,18 +32,19 @@ import com.oscar.pokedex.viewModel.PokemonViewModel
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonView(viewModel: PokemonViewModel) {
-    val pokemonObserved by viewModel.pokemon.observeAsState()
+fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
 
-    if (pokemonObserved != null) {
+    val pokemon by viewModel.pokemon.observeAsState()
 
-        val pokemon by remember {
-            mutableStateOf(pokemonObserved!!)
-        }
+    if (pokemon == null) {
+        LoadingComponent()
+    }
+    
+    if (pokemon != null) {
 
         Scaffold(
             topBar = {
-                PokemonViewTopBar(pokemon)
+                PokemonViewTopBar(pokemon!!) {navHost.navigate("PokemonList") }
             }
         ) {
 
@@ -54,21 +55,25 @@ fun PokemonView(viewModel: PokemonViewModel) {
                     .padding(top = it.calculateTopPadding()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                PokemonSpriteView(pokemon)
+
+                
+                PokemonSpriteView(pokemon!!)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(text = pokemon.name, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                Text(text = pokemon!!.name, fontSize = 30.sp, fontWeight = FontWeight.Bold)
 
-                TypesComponent(pokemon)
+                TypesComponent(pokemon!!)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                HeightAndWeightComopnent(pokemon)
+                HeightAndWeightComopnent(pokemon!!)
+                
+                Text(text = pokemon!!.name)
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                StatsComponent(pokemon)
+                StatsComponent(pokemon!!)
 
             }
         }

@@ -17,7 +17,9 @@ import com.oscar.pokedex.model.data.Pokemon
 @Composable
 fun PokemonSpriteView(pokemon: Pokemon) {
     Row(
-        Modifier.fillMaxWidth().height(230.dp)
+        Modifier
+            .fillMaxWidth()
+            .height(230.dp)
             .background(
                 pokemon.primaryType.color,
                 shape = RoundedCornerShape(bottomEnd = 40.dp, bottomStart = 40.dp)
@@ -38,3 +40,4 @@ fun PokemonSpriteView(pokemon: Pokemon) {
         )
     }
 }
+

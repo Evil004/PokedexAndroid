@@ -38,6 +38,5 @@ enum class PokemonType (val typeName: String, val color: Color) {
     PSYCHIC("Psychic", PsychicTypeColor),
     STEEL("Steel", SteelTypeColor),
     WATER("Water", WaterTypeColor),
-    ROCK("Rock", RockTypeColor),
-
+    ROCK("Rock", RockTypeColor)
 }

@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -18,11 +18,11 @@ import com.oscar.pokedex.model.data.Pokemon
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun PokemonViewTopBar(pokemon: Pokemon) {
+fun PokemonViewTopBar(pokemon: Pokemon, backArrowClick: () -> Unit) {
     TopAppBar(
         navigationIcon = {
-            IconButton(onClick = { }) {
-                Icon(imageVector = Icons.Filled.Menu, contentDescription = "", tint = Color.White)
+            IconButton(onClick = backArrowClick) {
+                Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "", tint = Color.White)
             }
         },
         title = {

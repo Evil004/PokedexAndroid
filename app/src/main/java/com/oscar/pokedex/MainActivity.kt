@@ -7,16 +7,14 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelStore
-import com.oscar.pokedex.model.data.Pokemon
-import com.oscar.pokedex.model.data.PokemonType
-import com.oscar.pokedex.view.PokemonView
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.oscar.pokedex.viewModel.PokemonViewModel
 import com.oscar.pokedex.ui.theme.PokedexTheme
-import com.oscar.pokedex.model.data.Stat
-import com.oscar.pokedex.model.test
+import com.oscar.pokedex.view.PokemonListView
+import com.oscar.pokedex.view.PokemonView
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +27,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PokemonView(pokemonViewModel)
+                    val navController = rememberNavController()
+
+                    NavHost(navController = navController, startDestination = "PokemonList") {
+                        composable("PokemonList") { PokemonListView(viewModel = pokemonViewModel, navController) }
+                        composable("PokemonView",
+                        ) {
+
+                            PokemonView(viewModel = pokemonViewModel, navController) }
+                    }
+
+
 
                 }
             }
