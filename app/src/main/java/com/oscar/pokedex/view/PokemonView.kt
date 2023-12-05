@@ -37,7 +37,7 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
     val pokemon by viewModel.pokemon.observeAsState()
 
     if (pokemon == null) {
-        LoadingComponent()
+        LoadingComponent(Modifier)
     }
     
     if (pokemon != null) {
@@ -61,7 +61,7 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(text = pokemon!!.name, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                Text(text = pokemon!!.name.replaceFirstChar { it.uppercase() }, fontSize = 30.sp, fontWeight = FontWeight.Bold)
 
                 TypesComponent(pokemon!!)
 

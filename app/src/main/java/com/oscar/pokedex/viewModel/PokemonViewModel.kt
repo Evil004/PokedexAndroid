@@ -6,8 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.oscar.pokedex.model.api.PokemonApi
-import com.oscar.pokedex.model.data.Pokemon
-import com.oscar.pokedex.model.data.PokemonList
+import com.oscar.pokedex.model.entity.Pokemon
+import com.oscar.pokedex.model.entity.PokemonList
+import com.oscar.pokedex.model.entity.PokemonListItem
 import com.oscar.pokedex.model.parseJsonListToPokemon
 import com.oscar.pokedex.model.parseJsonToPokemon
 import kotlinx.coroutines.Dispatchers
@@ -23,7 +24,7 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
 
     private var _pokemonName = ""
 
-    private var _pokemonList:MutableLiveData<PokemonList> = MutableLiveData(null);
+    private var _pokemonList: MutableLiveData<PokemonList> = MutableLiveData(null);
     val pokemonList: LiveData<PokemonList> = _pokemonList
 
     private var _searchInput: MutableLiveData<String> = MutableLiveData("");
@@ -34,7 +35,7 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
         getPokemonListData()
     }
 
-    fun setPokemonAndUpate(pokemon: String){
+    fun setPokemonAndUpate(pokemon: String) {
         _pokemonName = pokemon
         getPokemonData()
     }
@@ -53,18 +54,18 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun setSearchInput(searchInput:String){
+    fun setSearchInput(searchInput: String) {
         _searchInput.postValue(searchInput)
     }
 
-    private fun getPokemonListData(){
+    private fun getPokemonListData() {
 
         viewModelScope.launch {
 
 
             val pokemonList = withContext(Dispatchers.IO) {
 
-                val pokemonListJson = PokemonApi.retrofitService.getPokemonList(limit=1017)
+                val pokemonListJson = PokemonApi.retrofitService.getPokemonList(limit = 2000)
                 parseJsonListToPokemon(pokemonListJson)
 
             }
@@ -73,5 +74,5 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
         }
 
     }
-}
 
+}

@@ -1,4 +1,4 @@
-package com.oscar.pokedex.model.data
+package com.oscar.pokedex.model.entity
 
 
 data class Pokemon(
@@ -6,7 +6,7 @@ data class Pokemon(
 
     val name: String,
 
-    val spriteUrl: String,
+    val spriteUrl: String?,
 
 
     val primaryType: PokemonType,

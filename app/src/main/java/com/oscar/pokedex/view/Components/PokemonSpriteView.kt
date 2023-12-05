@@ -9,10 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.oscar.pokedex.model.data.Pokemon
+import com.oscar.pokedex.model.entity.Pokemon
 
 @Composable
 fun PokemonSpriteView(pokemon: Pokemon) {
@@ -25,18 +26,20 @@ fun PokemonSpriteView(pokemon: Pokemon) {
                 shape = RoundedCornerShape(bottomEnd = 40.dp, bottomStart = 40.dp)
             )
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ) {
+
 
         SubcomposeAsyncImage(
             pokemon.spriteUrl,
             loading = {
-                LoadingComponent()
+                LoadingComponent(Modifier.size(150.dp))
             },
             contentDescription = "",
             modifier = Modifier
                 .padding(30.dp)
-                ,
+            ,
         )
     }
 }

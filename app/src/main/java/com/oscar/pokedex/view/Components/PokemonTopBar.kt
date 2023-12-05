@@ -14,7 +14,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.oscar.pokedex.model.data.Pokemon
+import com.oscar.pokedex.model.entity.Pokemon
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)

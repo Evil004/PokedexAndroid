@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PokedexTheme {
                 val pokemonViewModel: PokemonViewModel by viewModels()
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -30,14 +30,19 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
 
                     NavHost(navController = navController, startDestination = "PokemonList") {
-                        composable("PokemonList") { PokemonListView(viewModel = pokemonViewModel, navController) }
-                        composable("PokemonView",
+                        composable("PokemonList") {
+                            PokemonListView(
+                                viewModel = pokemonViewModel,
+                                navController
+                            )
+                        }
+                        composable(
+                            "PokemonView",
                         ) {
 
-                            PokemonView(viewModel = pokemonViewModel, navController) }
+                            PokemonView(viewModel = pokemonViewModel, navController)
+                        }
                     }
-
-
 
                 }
             }

@@ -1,4 +1,4 @@
-package com.oscar.pokedex.model.data
+package com.oscar.pokedex.model.entity
 
 import androidx.compose.ui.graphics.Color
 import com.oscar.pokedex.ui.theme.BugTypeColor

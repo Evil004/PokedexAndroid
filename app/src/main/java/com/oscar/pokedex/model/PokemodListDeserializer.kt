@@ -2,7 +2,8 @@ package com.oscar.pokedex.model;
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.oscar.pokedex.model.data.PokemonList
+import com.oscar.pokedex.model.entity.PokemonList
+import com.oscar.pokedex.model.entity.PokemonListItem
 import java.lang.reflect.Type
 
 
@@ -15,14 +16,18 @@ class PokemonListDeserializer : JsonDeserializer<PokemonList> {
 
         val jsonObject = json.asJsonObject
 
-        val next = jsonObject.get("next").asString;
+        var next: String? = null;
+        if (!jsonObject.get("next").isJsonNull){
+            next = jsonObject.get("next").asString;
+
+        }
 
         val pokemonJsonList = jsonObject.get("results").asJsonArray
 
-        val pokemonListTmp = mutableListOf<String>()
+        val pokemonListTmp = mutableListOf<PokemonListItem>()
 
         pokemonJsonList.forEach {
-            pokemonListTmp.add(it.asJsonObject.get("name").asString)
+            pokemonListTmp.add(PokemonListItem(it.asJsonObject.get("name").asString))
         }
 
         return PokemonList(next, pokemonListTmp)

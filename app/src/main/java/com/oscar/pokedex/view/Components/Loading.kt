@@ -8,9 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoadingComponent(){
+fun LoadingComponent(modifier: Modifier){
     CircularProgressIndicator(
-        modifier = Modifier.width(64.dp),
+        modifier = modifier,
         color = MaterialTheme.colorScheme.secondary,
 
     )

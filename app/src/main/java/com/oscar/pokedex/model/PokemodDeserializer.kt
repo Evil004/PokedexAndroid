@@ -3,9 +3,9 @@ import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import com.oscar.pokedex.model.data.Pokemon
-import com.oscar.pokedex.model.data.PokemonType
-import com.oscar.pokedex.model.data.Stat
+import com.oscar.pokedex.model.entity.Pokemon
+import com.oscar.pokedex.model.entity.PokemonType
+import com.oscar.pokedex.model.entity.Stat
 import java.lang.reflect.Type
 
 

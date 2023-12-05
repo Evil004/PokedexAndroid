@@ -1,9 +1,8 @@
 package com.oscar.pokedex.model
 
-import androidx.compose.ui.res.painterResource
 import com.google.gson.GsonBuilder
-import com.oscar.pokedex.model.data.Pokemon
-import com.oscar.pokedex.model.data.PokemonList
+import com.oscar.pokedex.model.entity.Pokemon
+import com.oscar.pokedex.model.entity.PokemonList
 
 
 fun parseJsonToPokemon(json: String): Pokemon {
