@@ -1,4 +1,4 @@
-package com.oscar.pokedex.view
+package com.oscar.pokedex.view.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column

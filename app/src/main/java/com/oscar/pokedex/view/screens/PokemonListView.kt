@@ -1,4 +1,4 @@
-package com.oscar.pokedex.view
+package com.oscar.pokedex.view.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +29,6 @@ import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import com.oscar.pokedex.model.entity.PokemonListItem
 import com.oscar.pokedex.view.Components.LoadingComponent
-import com.oscar.pokedex.view.Components.PokemonSpriteView
 import com.oscar.pokedex.viewModel.PokemonViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
