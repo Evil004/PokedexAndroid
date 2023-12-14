@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.oscar.pokedex.viewModel.PokemonViewModel
+import com.oscar.pokedex.ui.screens.PokemonListView
+import com.oscar.pokedex.ui.screens.PokemonView
 import com.oscar.pokedex.ui.theme.PokedexTheme
-import com.oscar.pokedex.view.screens.PokemonListView
-import com.oscar.pokedex.view.screens.PokemonView
+import com.oscar.pokedex.ui.viewmodels.PokemonViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

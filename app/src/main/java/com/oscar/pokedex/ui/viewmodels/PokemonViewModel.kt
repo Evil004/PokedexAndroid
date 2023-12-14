@@ -1,16 +1,15 @@
-package com.oscar.pokedex.viewModel
+package com.oscar.pokedex.ui.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.oscar.pokedex.model.api.PokemonApi
-import com.oscar.pokedex.model.entity.Pokemon
-import com.oscar.pokedex.model.entity.PokemonList
-import com.oscar.pokedex.model.entity.PokemonListItem
-import com.oscar.pokedex.model.parseJsonListToPokemon
-import com.oscar.pokedex.model.parseJsonToPokemon
+import com.oscar.pokedex.data.models.api.PokemonApi
+import com.oscar.pokedex.data.models.entity.Pokemon
+import com.oscar.pokedex.data.models.entity.PokemonList
+import com.oscar.pokedex.data.models.parseJsonListToPokemon
+import com.oscar.pokedex.data.models.parseJsonToPokemon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

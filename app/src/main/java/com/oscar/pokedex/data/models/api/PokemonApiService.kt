@@ -1,4 +1,4 @@
-package com.oscar.pokedex.model.api
+package com.oscar.pokedex.data.models.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory

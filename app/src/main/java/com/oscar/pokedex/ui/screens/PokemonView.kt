@@ -1,4 +1,4 @@
-package com.oscar.pokedex.view.screens
+package com.oscar.pokedex.ui.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -21,13 +21,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
-import com.oscar.pokedex.view.Components.PokemonViewTopBar
-import com.oscar.pokedex.view.Components.HeightAndWeightComopnent
-import com.oscar.pokedex.view.Components.LoadingComponent
-import com.oscar.pokedex.view.Components.PokemonSpriteView
-import com.oscar.pokedex.view.Components.StatsComponent
-import com.oscar.pokedex.view.Components.TypesComponent
-import com.oscar.pokedex.viewModel.PokemonViewModel
+import com.oscar.pokedex.ui.components.PokemonViewTopBar
+import com.oscar.pokedex.ui.components.HeightAndWeightComopnent
+import com.oscar.pokedex.ui.components.LoadingComponent
+import com.oscar.pokedex.ui.components.PokemonSpriteView
+import com.oscar.pokedex.ui.components.StatsComponent
+import com.oscar.pokedex.ui.components.TypesComponent
+import com.oscar.pokedex.ui.viewmodels.PokemonViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)

@@ -1,4 +1,4 @@
-package com.oscar.pokedex.model.entity
+package com.oscar.pokedex.data.models.entity
 
 data class PokemonList(
     val nextPokemonsUrl: String? = null,

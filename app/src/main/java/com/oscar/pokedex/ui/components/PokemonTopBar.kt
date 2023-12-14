@@ -1,4 +1,4 @@
-package com.oscar.pokedex.view.Components
+package com.oscar.pokedex.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -14,7 +14,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.oscar.pokedex.model.entity.Pokemon
+import com.oscar.pokedex.data.models.entity.Pokemon
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
