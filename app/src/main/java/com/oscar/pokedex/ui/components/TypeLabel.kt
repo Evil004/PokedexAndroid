@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.oscar.pokedex.data.models.entity.PokemonType
+import com.oscar.pokedex.domain.models.PokemonType
 
 @Composable
 fun TypeLabel(type: PokemonType) {

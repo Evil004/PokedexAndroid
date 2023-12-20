@@ -1,9 +1,9 @@
-package com.oscar.pokedex.data.models;
+package com.oscar.pokedex.data.mappers;
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.oscar.pokedex.data.models.entity.PokemonList
-import com.oscar.pokedex.data.models.entity.PokemonListItem
+import com.oscar.pokedex.domain.models.PokemonList
+import com.oscar.pokedex.domain.models.PokemonListItem
 import java.lang.reflect.Type
 
 

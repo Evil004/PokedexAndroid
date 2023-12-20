@@ -6,8 +6,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.oscar.pokedex.data.models.entity.Pokemon
-import com.oscar.pokedex.data.models.entity.Stat
+import com.oscar.pokedex.domain.models.Pokemon
+import com.oscar.pokedex.domain.models.Stat
 
 @Composable
 fun StatsComponent(pokemon: Pokemon) {

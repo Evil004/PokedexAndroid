@@ -1,4 +1,4 @@
-package com.oscar.pokedex.data.models.entity
+package com.oscar.pokedex.domain.models
 
 
 data class Pokemon(

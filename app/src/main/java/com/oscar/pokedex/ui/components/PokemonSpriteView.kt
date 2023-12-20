@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.oscar.pokedex.data.models.entity.Pokemon
+import com.oscar.pokedex.domain.models.Pokemon
 
 @Composable
 fun PokemonSpriteView(pokemon: Pokemon) {

@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.oscar.pokedex.data.models.entity.Stat
+import com.oscar.pokedex.domain.models.Stat
 
 const val MAX_STAT = 255;
 const val BAR_SIZE = 280;

@@ -27,7 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
-import com.oscar.pokedex.data.models.entity.PokemonListItem
+import com.oscar.pokedex.domain.models.PokemonListItem
 import com.oscar.pokedex.ui.components.LoadingComponent
 import com.oscar.pokedex.ui.viewmodels.PokemonViewModel
 

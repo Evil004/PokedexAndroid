@@ -1,21 +1,22 @@
 package com.oscar.pokedex.ui.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.oscar.pokedex.data.models.api.PokemonApi
-import com.oscar.pokedex.data.models.entity.Pokemon
-import com.oscar.pokedex.data.models.entity.PokemonList
-import com.oscar.pokedex.data.models.parseJsonListToPokemon
-import com.oscar.pokedex.data.models.parseJsonToPokemon
+import com.oscar.pokedex.domain.models.Pokemon
+import com.oscar.pokedex.domain.models.PokemonList
+import com.oscar.pokedex.domain.repositories.PokemonListRepository
+import com.oscar.pokedex.domain.repositories.PokemonRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class PokemonViewModel(application: Application) : AndroidViewModel(application) {
+class PokemonViewModel constructor(
+    private val pokemonRepository:PokemonRepository,
+    private val pokemonListRepository: PokemonListRepository
+) : ViewModel() {
 
     private var _pokemon: MutableLiveData<Pokemon> = MutableLiveData(null);
 
@@ -44,10 +45,10 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             val pokemon = withContext(Dispatchers.IO) {
 
-                val pokemonJson = PokemonApi.retrofitService.getPokemonByName(_pokemonName)
-                parseJsonToPokemon(pokemonJson)
-
+                val pokemon = pokemonRepository.getPokemon(_pokemonName)
+                pokemon
             }
+
 
             _pokemon.postValue(pokemon)
         }
@@ -64,8 +65,9 @@ class PokemonViewModel(application: Application) : AndroidViewModel(application)
 
             val pokemonList = withContext(Dispatchers.IO) {
 
-                val pokemonListJson = PokemonApi.retrofitService.getPokemonList(limit = 2000)
-                parseJsonListToPokemon(pokemonListJson)
+                val pokemonList = pokemonListRepository.getPokemonList()
+                pokemonList
+
 
             }
 

@@ -1,11 +1,11 @@
-package com.oscar.pokedex.data.models;
+package com.oscar.pokedex.data.mappers
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
-import com.oscar.pokedex.data.models.entity.Pokemon
-import com.oscar.pokedex.data.models.entity.PokemonType
-import com.oscar.pokedex.data.models.entity.Stat
+import com.oscar.pokedex.domain.models.Pokemon
+import com.oscar.pokedex.domain.models.PokemonType
+import com.oscar.pokedex.domain.models.Stat
 import java.lang.reflect.Type
 
 
@@ -64,7 +64,7 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
 
         val statsTmp = jsonObject.get("stats").asJsonArray
 
-        statsTmp.forEach() {
+        statsTmp.forEach {
             val statJsonObject = it.asJsonObject
 
             val baseStat = statJsonObject.get("base_stat").asInt
