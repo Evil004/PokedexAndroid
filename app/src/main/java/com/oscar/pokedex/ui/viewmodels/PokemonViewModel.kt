@@ -8,18 +8,23 @@ import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
 import com.oscar.pokedex.domain.repositories.PokemonRepository
+import com.oscar.pokedex.domain.usecases.GetPokemonListUseCase
+import com.oscar.pokedex.domain.usecases.GetPokemonUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
-class PokemonViewModel constructor(
-    private val pokemonRepository:PokemonRepository,
-    private val pokemonListRepository: PokemonListRepository
+@HiltViewModel
+class PokemonViewModel @Inject constructor(
+    private val getPokemonUseCase: GetPokemonUseCase,
+    private val getPokemonListUseCase: GetPokemonListUseCase
 ) : ViewModel() {
 
-    private var _pokemon: MutableLiveData<Pokemon> = MutableLiveData(null);
 
+    private var _pokemon: MutableLiveData<Pokemon> = MutableLiveData(null);
     val pokemon: LiveData<Pokemon> = _pokemon
 
     private var _pokemonName = ""
@@ -45,7 +50,7 @@ class PokemonViewModel constructor(
         viewModelScope.launch {
             val pokemon = withContext(Dispatchers.IO) {
 
-                val pokemon = pokemonRepository.getPokemon(_pokemonName)
+                val pokemon = getPokemonUseCase.getPokemon(_pokemonName)
                 pokemon
             }
 
@@ -65,7 +70,7 @@ class PokemonViewModel constructor(
 
             val pokemonList = withContext(Dispatchers.IO) {
 
-                val pokemonList = pokemonListRepository.getPokemonList()
+                val pokemonList = getPokemonListUseCase.getPokemonList()
                 pokemonList
 
 

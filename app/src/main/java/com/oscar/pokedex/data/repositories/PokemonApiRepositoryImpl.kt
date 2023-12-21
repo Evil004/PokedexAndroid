@@ -3,8 +3,10 @@ package com.oscar.pokedex.data.repositories
 import com.oscar.pokedex.data.sources.remote.PokemonApi
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.repositories.PokemonRepository
+import javax.inject.Inject
 
-class PokemonApiRepositoryImpl : PokemonRepository {
+class PokemonApiRepositoryImpl @Inject constructor(): PokemonRepository {
+
     override suspend fun getPokemon(name: String): Pokemon {
         return PokemonApi.retrofitService.getPokemonByName(name)
     }
@@ -12,4 +14,5 @@ class PokemonApiRepositoryImpl : PokemonRepository {
     override suspend fun getPokemon(id: Int): Pokemon {
         return PokemonApi.retrofitService.getPokemonById(id)
     }
+
 }
