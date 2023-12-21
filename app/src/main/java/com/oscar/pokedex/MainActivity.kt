@@ -22,6 +22,7 @@ import com.oscar.pokedex.domain.usecases.GetPokemonUseCase
 import com.oscar.pokedex.ui.screens.PokemonListView
 import com.oscar.pokedex.ui.screens.PokemonView
 import com.oscar.pokedex.ui.theme.PokedexTheme
+import com.oscar.pokedex.ui.viewmodels.PokemonListViewModel
 import com.oscar.pokedex.ui.viewmodels.PokemonViewModel
 import dagger.Binds
 import dagger.Module
@@ -41,6 +42,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PokedexTheme {
                 val pokemonViewModel: PokemonViewModel by viewModels()
+                val pokemonListViewModel: PokemonListViewModel by viewModels()
 
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -51,15 +53,21 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "PokemonList") {
                         composable("PokemonList") {
                             PokemonListView(
-                                viewModel = pokemonViewModel,
+                                viewModel = pokemonListViewModel,
                                 navController
                             )
                         }
                         composable(
-                            "PokemonView",
+                            "PokemonView/{pokemon}",
                         ) {
+                            val pokemon = it.arguments?.getString("pokemon")
 
-                            PokemonView(viewModel = pokemonViewModel, navController)
+                            pokemon?.let {
+                                pokemonViewModel.setPokemonAndUpate(pokemon)
+                                PokemonView(viewModel = pokemonViewModel, navController)
+
+                            }
+
                         }
                     }
 

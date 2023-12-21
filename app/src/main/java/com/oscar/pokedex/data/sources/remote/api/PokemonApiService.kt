@@ -1,12 +1,7 @@
-package com.oscar.pokedex.data.sources.remote
+package com.oscar.pokedex.data.sources.remote.api
 
-import com.google.gson.GsonBuilder
-import com.oscar.pokedex.data.mappers.PokemonDeserializer
-import com.oscar.pokedex.data.mappers.PokemonListDeserializer
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -37,21 +32,3 @@ interface PokemonApiService {
     ): PokemonList
 }
 
-object PokemonApi {
-
-    val gson = GsonBuilder()
-        .registerTypeAdapter(Pokemon::class.java, PokemonDeserializer())
-        .registerTypeAdapter(PokemonList::class.java, PokemonListDeserializer())
-        .create()
-
-    val retrofit = Retrofit.Builder()
-        .baseUrl("https://pokeapi.co/api/v2/")
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .build()
-
-    val retrofitService: PokemonApiService by lazy {
-        retrofit.create(PokemonApiService::class.java)
-
-    }
-
-}

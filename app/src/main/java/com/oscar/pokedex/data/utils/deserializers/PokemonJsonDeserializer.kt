@@ -1,4 +1,4 @@
-package com.oscar.pokedex.data.mappers
+package com.oscar.pokedex.data.utils.deserializers
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement

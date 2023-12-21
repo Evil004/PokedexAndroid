@@ -20,7 +20,6 @@ import javax.inject.Inject
 @HiltViewModel
 class PokemonViewModel @Inject constructor(
     private val getPokemonUseCase: GetPokemonUseCase,
-    private val getPokemonListUseCase: GetPokemonListUseCase
 ) : ViewModel() {
 
 
@@ -29,16 +28,7 @@ class PokemonViewModel @Inject constructor(
 
     private var _pokemonName = ""
 
-    private var _pokemonList: MutableLiveData<PokemonList> = MutableLiveData(null);
-    val pokemonList: LiveData<PokemonList> = _pokemonList
 
-    private var _searchInput: MutableLiveData<String> = MutableLiveData("");
-    val searchInput: LiveData<String> = _searchInput
-
-    init {
-
-        getPokemonListData()
-    }
 
     fun setPokemonAndUpate(pokemon: String) {
         _pokemonName = pokemon
@@ -59,26 +49,6 @@ class PokemonViewModel @Inject constructor(
         }
     }
 
-    fun setSearchInput(searchInput: String) {
-        _searchInput.postValue(searchInput)
-    }
 
-    private fun getPokemonListData() {
-
-        viewModelScope.launch {
-
-
-            val pokemonList = withContext(Dispatchers.IO) {
-
-                val pokemonList = getPokemonListUseCase.getPokemonList()
-                pokemonList
-
-
-            }
-
-            _pokemonList.postValue(pokemonList)
-        }
-
-    }
 
 }

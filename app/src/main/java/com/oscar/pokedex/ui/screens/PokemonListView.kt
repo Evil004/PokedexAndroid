@@ -29,11 +29,12 @@ import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import com.oscar.pokedex.domain.models.PokemonListItem
 import com.oscar.pokedex.ui.components.LoadingComponent
+import com.oscar.pokedex.ui.viewmodels.PokemonListViewModel
 import com.oscar.pokedex.ui.viewmodels.PokemonViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonListView(viewModel: PokemonViewModel, navController: NavHostController) {
+fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostController) {
     val pokemonListObserved by viewModel.pokemonList.observeAsState()
     val searchInput by viewModel.searchInput.observeAsState()
 
@@ -61,7 +62,7 @@ fun PokemonListView(viewModel: PokemonViewModel, navController: NavHostControlle
 
             LazyVerticalGrid(columns = GridCells.Fixed(3)) {
                 items(pokemonList.list) { pokemon ->
-                    PokemonListCard(pokemon = pokemon, navController, viewModel)
+                    PokemonListCard(pokemon = pokemon, navController)
                 }
             }
         }
@@ -72,7 +73,6 @@ fun PokemonListView(viewModel: PokemonViewModel, navController: NavHostControlle
 fun PokemonListCard(
     pokemon: PokemonListItem,
     navController: NavHostController,
-    viewModel: PokemonViewModel
 ) {
     Card(
         Modifier
@@ -80,9 +80,8 @@ fun PokemonListCard(
             .height(150.dp)
             .clickable {
 
-                viewModel.setPokemonAndUpate(pokemon.name)
 
-                navController.navigate("PokemonView")
+                navController.navigate("PokemonView/${pokemon.name}")
 
             }) {
         Column(
@@ -91,10 +90,10 @@ fun PokemonListCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            if (pokemon.spriteUrl == null){
+            if (pokemon.spriteUrl == null) {
                 LoadingComponent(Modifier)
 
-            }else{
+            } else {
 
                 SubcomposeAsyncImage(
                     pokemon.spriteUrl,
@@ -103,8 +102,7 @@ fun PokemonListCard(
                     },
                     contentDescription = "",
                     modifier = Modifier
-                        .padding(30.dp)
-                    ,
+                        .padding(30.dp),
                 )
             }
 
