@@ -11,19 +11,20 @@ import javax.inject.Inject
  */
 class PokemonApiRepositoryImpl @Inject constructor(): PokemonRepository {
     /**
-     * Retrieves a Pokemon by its ID from the API.
-     *
-     * @param id The ID of the Pokemon to retrieve.
-     * @return The Pokemon object corresponding to the given ID.
-     */
-    override suspend fun getPokemon(name: String): Pokemon {
-        return PokemonApi.retrofitService.getPokemonByName(name)
-    }
-    /**
      * Retrieves a Pokemon by its name from the API.
      *
      * @param name The name of the Pokemon to retrieve.
      * @return The Pokemon object corresponding to the given name.
+     */
+    override suspend fun getPokemon(name: String): Pokemon {
+        return PokemonApi.retrofitService.getPokemonByName(name)
+    }
+
+    /**
+     * Retrieves a Pokemon by its ID from the API.
+     *
+     * @param id The ID of the Pokemon to retrieve.
+     * @return The Pokemon object corresponding to the given ID.
      */
     override suspend fun getPokemon(id: Int): Pokemon {
         return PokemonApi.retrofitService.getPokemonById(id)
