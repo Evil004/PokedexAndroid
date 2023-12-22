@@ -19,9 +19,10 @@ class PokemonListDeserializer : JsonDeserializer<PokemonList> {
 
         val jsonObject = json.asJsonObject
 
-        var next: String? = null;
+        var offset: Int? = null;
         if (!jsonObject.get("next").isJsonNull){
-            next = jsonObject.get("next").asString;
+            val next = jsonObject.get("next").asString;
+            offset = getOffset(next)
 
         }
 
@@ -33,7 +34,23 @@ class PokemonListDeserializer : JsonDeserializer<PokemonList> {
             pokemonListTmp.add(PokemonListItem(it.asJsonObject.get("name").asString))
         }
 
-        return PokemonList(next, pokemonListTmp)
+
+        return PokemonList(offset, pokemonListTmp)
 
     }
+
+    fun getOffset (nextUrl: String): Int?{
+        val regex = Regex("offset=(\\d+)")
+        val matchResult = regex.find(nextUrl)
+
+        val offset = matchResult?.groupValues?.get(1)
+
+        if (offset != null) {
+            return offset.toInt()
+        } else {
+            return null;
+        }
+    }
+
+
 }

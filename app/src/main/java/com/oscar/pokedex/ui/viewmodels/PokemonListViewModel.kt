@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
-import com.oscar.pokedex.domain.repositories.PokemonListRepository
-import com.oscar.pokedex.domain.repositories.PokemonRepository
 import com.oscar.pokedex.domain.usecases.GetPokemonListUseCase
-import com.oscar.pokedex.domain.usecases.GetPokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,6 +27,8 @@ class PokemonListViewModel @Inject constructor(
     private var _searchInput: MutableLiveData<String> = MutableLiveData("");
     val searchInput: LiveData<String> = _searchInput
 
+    private var _isExpanding = false
+
     init {
         getPokemonListData()
     }
@@ -41,6 +39,26 @@ class PokemonListViewModel @Inject constructor(
      */
     fun setSearchInput(searchInput: String) {
         _searchInput.postValue(searchInput)
+    }
+
+    fun expandPokemonList(){
+        if (_pokemonList.value == null){return}
+
+        if (_isExpanding) return
+        _isExpanding = true
+
+        viewModelScope.launch {
+
+            val pokemonList = withContext(Dispatchers.IO) {
+
+                val pokemonList = getPokemonListUseCase.expandPokemonList(_pokemonList.value!!)
+                pokemonList
+
+            }
+            _pokemonList.postValue(pokemonList)
+
+            _isExpanding = false
+        }
     }
 
     /**

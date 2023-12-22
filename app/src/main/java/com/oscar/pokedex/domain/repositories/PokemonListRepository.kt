@@ -12,4 +12,7 @@ interface PokemonListRepository {
      * @return The PokemonList containing the list of Pokemon.
      */
     suspend fun getPokemonList(): PokemonList
+
+    suspend fun getPokemonList(offset: Int): PokemonList
+
 }

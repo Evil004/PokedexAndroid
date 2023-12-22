@@ -1,5 +1,6 @@
 package com.oscar.pokedex.domain.usecases
 
+import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
 import javax.inject.Inject
@@ -19,6 +20,21 @@ class GetPokemonListUseCase @Inject constructor(
      */
     suspend fun getPokemonList(): PokemonList {
         return repository.getPokemonList()
+    }
+
+    suspend fun expandPokemonList(pokemonList: PokemonList): PokemonList {
+        val returnList = pokemonList.copy()
+
+        if (returnList.offset == null) {
+            return returnList
+        }
+
+        val newList = repository.getPokemonList(pokemonList.offset!!)
+
+        returnList.list.addAll(newList.list)
+
+        returnList.offset = newList.offset
+        return returnList
     }
 
 
