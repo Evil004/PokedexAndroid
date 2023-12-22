@@ -20,6 +20,13 @@ import com.oscar.pokedex.domain.models.Stat
 
 const val MAX_STAT = 255;
 const val BAR_SIZE = 280;
+
+/**
+ * Composable that displays a bar representing a specific statistic of a Pokemon.
+ *
+ * @param stat The Stat enum representing the type of statistic.
+ * @param value The value of the statistic to display.
+ */
 @Composable
 fun StatBar(stat: Stat, value: Int) {
     Row(

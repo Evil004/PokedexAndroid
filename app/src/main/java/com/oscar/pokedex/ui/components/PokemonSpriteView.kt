@@ -15,6 +15,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.oscar.pokedex.domain.models.Pokemon
 
+/**
+ * Composable used to display the sprite view of a Pokemon.
+ *
+ * @param pokemon The Pokemon object containing sprite information.
+ */
 @Composable
 fun PokemonSpriteView(pokemon: Pokemon) {
     Row(

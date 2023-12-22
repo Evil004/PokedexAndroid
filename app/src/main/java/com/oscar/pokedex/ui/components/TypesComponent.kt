@@ -8,6 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.oscar.pokedex.domain.models.Pokemon
 
+/**
+ * Component that displays the types of a Pokemon.
+ * It arranges the primary and secondary types, if available, horizontally.
+ *
+ * @param pokemon The Pokemon object containing type information.
+ */
 @Composable
 fun TypesComponent(pokemon: Pokemon) {
     val primaryType = pokemon.primaryType

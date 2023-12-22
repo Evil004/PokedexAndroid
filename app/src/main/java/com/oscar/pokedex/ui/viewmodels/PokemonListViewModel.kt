@@ -16,10 +16,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * ViewModel responsible for managing a list of Pokemon.
+ * Utilizes [GetPokemonListUseCase] to fetch the Pokemon list data.
+ */
 @HiltViewModel
 class PokemonListViewModel @Inject constructor(
     private val getPokemonListUseCase: GetPokemonListUseCase
-): ViewModel(){
+) : ViewModel() {
 
     private var _pokemonList: MutableLiveData<PokemonList> = MutableLiveData(null);
     val pokemonList: LiveData<PokemonList> = _pokemonList
@@ -28,27 +32,30 @@ class PokemonListViewModel @Inject constructor(
     val searchInput: LiveData<String> = _searchInput
 
     init {
-
         getPokemonListData()
     }
 
+    /**
+     * Updates the search input value and notifies observers of the change.
+     * @param searchInput The new search input string.
+     */
     fun setSearchInput(searchInput: String) {
         _searchInput.postValue(searchInput)
     }
 
+    /**
+     * Fetches the list of Pokemon data asynchronously and updates the LiveData with the fetched list.
+     */
     private fun getPokemonListData() {
 
         viewModelScope.launch {
-
 
             val pokemonList = withContext(Dispatchers.IO) {
 
                 val pokemonList = getPokemonListUseCase.getPokemonList()
                 pokemonList
 
-
             }
-
             _pokemonList.postValue(pokemonList)
         }
 

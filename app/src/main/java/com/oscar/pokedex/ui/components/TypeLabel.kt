@@ -12,6 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.oscar.pokedex.domain.models.PokemonType
 
+/**
+ * Composable that displays a label for a specific Pokemon type.
+ *
+ * @param type The PokemonType object representing the type to display.
+ */
 @Composable
 fun TypeLabel(type: PokemonType) {
     Column(

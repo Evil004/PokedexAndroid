@@ -16,6 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.oscar.pokedex.domain.models.Pokemon
 
+/**
+ * Composable for displaying the top bar of a Pokemon view.
+ *
+ * @param pokemon The Pokemon object being displayed.
+ * @param backArrowClick Callback for handling the back arrow button click.
+ */
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun PokemonViewTopBar(pokemon: Pokemon, backArrowClick: () -> Unit) {

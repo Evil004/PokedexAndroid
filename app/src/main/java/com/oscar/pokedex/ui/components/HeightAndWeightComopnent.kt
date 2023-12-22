@@ -10,6 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.oscar.pokedex.domain.models.Pokemon
 
+/**
+ * Composable for displaying the height and weight information of a Pokemon.
+ *
+ * @param pokemon The Pokemon object containing height and weight information.
+ */
 @Composable
 fun HeightAndWeightComopnent(pokemon: Pokemon) {
     Row(Modifier.width(250.dp), horizontalArrangement = Arrangement.SpaceBetween) {

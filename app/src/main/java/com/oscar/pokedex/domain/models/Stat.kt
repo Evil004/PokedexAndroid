@@ -18,7 +18,7 @@ enum class Stat(val color: Color, val text: String, val jsonName: String) {
 
     companion object {
         fun getStat(jsonName: String): Stat {
-            return values().first { it.jsonName == jsonName }
+            return entries.first { it.jsonName == jsonName }
         }
     }
 }

@@ -9,6 +9,9 @@ import com.oscar.pokedex.domain.models.Stat
 import java.lang.reflect.Type
 
 
+/**
+ * Custom JSON deserializer for Pokemon objects.
+ */
 class PokemonDeserializer : JsonDeserializer<Pokemon> {
     override fun deserialize(
         json: JsonElement,
