@@ -1,6 +1,5 @@
 package com.oscar.pokedex.domain.usecases
 
-import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
 import javax.inject.Inject

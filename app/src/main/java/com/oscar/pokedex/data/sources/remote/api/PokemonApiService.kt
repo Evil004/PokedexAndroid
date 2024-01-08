@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val DEFAULT_LIMIT = 21
+const val DEFAULT_LIMIT = 30
 
 interface PokemonApiService {
     @Headers(

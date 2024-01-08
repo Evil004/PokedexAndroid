@@ -20,11 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-
-import com.oscar.pokedex.ui.components.PokemonViewTopBar
 import com.oscar.pokedex.ui.components.HeightAndWeightComopnent
 import com.oscar.pokedex.ui.components.LoadingComponent
 import com.oscar.pokedex.ui.components.PokemonSpriteView
+import com.oscar.pokedex.ui.components.PokemonViewTopBar
 import com.oscar.pokedex.ui.components.StatsComponent
 import com.oscar.pokedex.ui.components.TypesComponent
 import com.oscar.pokedex.ui.viewmodels.PokemonViewModel

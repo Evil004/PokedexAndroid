@@ -24,13 +24,4 @@ class GetPokemonUseCase @Inject constructor(
         return repository.getPokemon(name)
     }
 
-    /**
-     * Retrieves Pokemon data by ID.
-     *
-     * @param id The ID of the Pokemon to retrieve.
-     * @return The Pokemon object corresponding to the given ID.
-     */
-    suspend fun getPokemon(id: Int): Pokemon {
-        return repository.getPokemon(id)
-    }
 }

@@ -20,14 +20,5 @@ class PokemonApiRepositoryImpl @Inject constructor(): PokemonRepository {
         return PokemonApi.retrofitService.getPokemonByName(name)
     }
 
-    /**
-     * Retrieves a Pokemon by its ID from the API.
-     *
-     * @param id The ID of the Pokemon to retrieve.
-     * @return The Pokemon object corresponding to the given ID.
-     */
-    override suspend fun getPokemon(id: Int): Pokemon {
-        return PokemonApi.retrofitService.getPokemonById(id)
-    }
 
 }

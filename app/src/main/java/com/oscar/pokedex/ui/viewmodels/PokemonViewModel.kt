@@ -34,7 +34,7 @@ class PokemonViewModel @Inject constructor(
      *  the data of the Pokemon.
      *  @param pokemonName the name of the Pokemon to fetch
      */
-    fun setPokemonAndUpate(pokemonName: String) {
+    fun setPokemonAndGetData(pokemonName: String) {
         _pokemonName = pokemonName
         getPokemonData()
     }
