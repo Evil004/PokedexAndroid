@@ -46,19 +46,6 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
     if (pokemonListObserved != null) {
 
         Column(Modifier.fillMaxSize()) {
-            TextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = searchInput ?: "",
-                placeholder = {
-                    Text(
-                        text = "Buscar..."
-                    )
-                },
-                onValueChange = { viewModel.setSearchInput(it) },
-                maxLines = 1,
-                singleLine = true,
-                leadingIcon = { Icon(Icons.Filled.Search, "") })
-
 
             val pokemonList by remember {
                 mutableStateOf(pokemonListObserved!!)
