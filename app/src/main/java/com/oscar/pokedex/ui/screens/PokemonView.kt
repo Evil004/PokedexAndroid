@@ -38,12 +38,12 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
     if (pokemon == null) {
         LoadingComponent(Modifier)
     }
-    
+
     if (pokemon != null) {
 
         Scaffold(
             topBar = {
-                PokemonViewTopBar(pokemon!!) {navHost.navigate("PokemonList") }
+                PokemonViewTopBar(pokemon!!) { navHost.navigate("PokemonList") }
             }
         ) {
 
@@ -55,12 +55,16 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                
+
                 PokemonSpriteView(pokemon!!)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(text = pokemon!!.speciesName.replaceFirstChar { it.uppercase() }, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                Text(
+                    text = pokemon!!.speciesName.replaceFirstChar { it.uppercase() },
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.Bold
+                )
 
                 TypesComponent(pokemon!!)
 

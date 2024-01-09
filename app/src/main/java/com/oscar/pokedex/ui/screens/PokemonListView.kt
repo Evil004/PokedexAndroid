@@ -66,9 +66,10 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
 
             val state = rememberLazyGridState()
 
-            fun LazyGridState.isScrolledToEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
+            fun LazyGridState.isScrolledToEnd() =
+                layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
 
-            if (state.isScrolledToEnd()){
+            if (state.isScrolledToEnd()) {
                 viewModel.expandPokemonList()
             }
 
@@ -76,9 +77,13 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
                 items(pokemonList.list) { pokemon ->
                     PokemonListCard(pokemon = pokemon, navController)
                 }
-                item (span = { GridItemSpan(3) }) {
+                item(span = { GridItemSpan(3) }) {
 
-                    Row(Modifier.size(60.dp), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
+                    Row(
+                        Modifier.size(60.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
 
                         LoadingComponent(modifier = Modifier.size(40.dp))
                     }
