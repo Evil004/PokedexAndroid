@@ -6,6 +6,8 @@ data class Pokemon(
 
     val name: String,
 
+    val speciesName: String,
+
     val spriteUrl: String?,
 
 

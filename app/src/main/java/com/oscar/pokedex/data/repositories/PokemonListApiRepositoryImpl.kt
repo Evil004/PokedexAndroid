@@ -42,6 +42,7 @@ class PokemonListApiRepositoryImpl @Inject constructor(): PokemonListRepository 
             CoroutineScope(Dispatchers.IO).launch {
                 val pokemon = PokemonApi.retrofitService.getPokemonByName(name = pokemonItem.name)
 
+                pokemonItem.speciesName = pokemon.speciesName
                 pokemonItem.spriteUrl = pokemon.spriteUrl
             }
 

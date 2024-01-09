@@ -60,15 +60,13 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(text = pokemon!!.name.replaceFirstChar { it.uppercase() }, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+                Text(text = pokemon!!.speciesName.replaceFirstChar { it.uppercase() }, fontSize = 30.sp, fontWeight = FontWeight.Bold)
 
                 TypesComponent(pokemon!!)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
                 HeightAndWeightComopnent(pokemon!!)
-                
-                Text(text = pokemon!!.name)
 
                 Spacer(modifier = Modifier.height(30.dp))
 

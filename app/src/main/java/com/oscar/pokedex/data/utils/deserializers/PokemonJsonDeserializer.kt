@@ -34,6 +34,8 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
 
         val typesTmp = jsonObject.get("types").asJsonArray;
 
+        val speciesNamme = jsonObject.get("species").asJsonObject.get("name").asString
+
         var primaryType: PokemonType = PokemonType.NORMAL;
         var secondaryType: PokemonType? = null;
 
@@ -57,7 +59,8 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
             height = height,
             primaryType = primaryType,
             secondaryType = secondaryType,
-            spriteUrl = spriteUrl
+            spriteUrl = spriteUrl,
+            speciesName = speciesNamme
         )
 
     }

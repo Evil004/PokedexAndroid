@@ -30,8 +30,11 @@ class PokemonListDeserializer : JsonDeserializer<PokemonList> {
 
         val pokemonListTmp = mutableListOf<PokemonListItem>()
 
+
         pokemonJsonList.forEach {
-            pokemonListTmp.add(PokemonListItem(it.asJsonObject.get("name").asString))
+            val  name = it.asJsonObject.get("name").asString;
+
+            pokemonListTmp.add(PokemonListItem(name = name));
         }
 
 

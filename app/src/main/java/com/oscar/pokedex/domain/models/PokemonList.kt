@@ -7,6 +7,7 @@ data class PokemonList(
 
 data class PokemonListItem(
     val name: String,
+    var speciesName: String? = null,
     val id: Int? = null,
     var spriteUrl: String? = null,
 )

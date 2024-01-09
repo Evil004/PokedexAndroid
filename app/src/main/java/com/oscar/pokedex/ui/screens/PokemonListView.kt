@@ -66,18 +66,7 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
 
             val state = rememberLazyGridState()
 
-            /*if (state.layoutInfo.totalItemsCount-17 <= state.firstVisibleItemIndex){
-                viewModel.expandPokemonList()
-            }*/
-
-
-            var showButton by remember {
-                mutableStateOf(true)
-            }
-
-
             fun LazyGridState.isScrolledToEnd() = layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1
-
 
             if (state.isScrolledToEnd()){
                 viewModel.expandPokemonList()
@@ -139,7 +128,10 @@ fun PokemonListCard(
                 )
             }
 
-            Text(text = pokemon.name.replaceFirstChar { it.uppercase() })
+            if (pokemon.speciesName != null) {
+                Text(text = pokemon.speciesName!!.replaceFirstChar { it.uppercase() })
+
+            }
         }
     }
 }
