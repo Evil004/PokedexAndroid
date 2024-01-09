@@ -66,6 +66,7 @@ class PokemonListViewModel @Inject constructor(
      */
     private fun getPokemonListData() {
 
+
         viewModelScope.launch {
 
             val pokemonList = withContext(Dispatchers.IO) {

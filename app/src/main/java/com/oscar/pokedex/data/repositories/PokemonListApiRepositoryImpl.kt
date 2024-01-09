@@ -3,6 +3,9 @@ package com.oscar.pokedex.data.repositories
 import com.oscar.pokedex.data.sources.remote.api.PokemonApi
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -35,9 +38,13 @@ class PokemonListApiRepositoryImpl @Inject constructor(): PokemonListRepository 
 
     private suspend fun getPokemonSpritesURL(pokemonList: PokemonList) {
         for (pokemonItem in pokemonList.list) {
-            val pokemon = PokemonApi.retrofitService.getPokemonByName(name = pokemonItem.name)
 
-            pokemonItem.spriteUrl = pokemon.spriteUrl
+            CoroutineScope(Dispatchers.IO).launch {
+                val pokemon = PokemonApi.retrofitService.getPokemonByName(name = pokemonItem.name)
+
+                pokemonItem.spriteUrl = pokemon.spriteUrl
+            }
+
         }
     }
 }
