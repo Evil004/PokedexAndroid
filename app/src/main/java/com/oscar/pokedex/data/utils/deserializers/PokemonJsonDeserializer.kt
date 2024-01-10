@@ -29,12 +29,11 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
 
         val spriteUrl = getSpriteUrl(jsonObject)
 
-
         val statMap = getStatsMap(jsonObject)
 
         val typesTmp = jsonObject.get("types").asJsonArray;
 
-        val speciesNamme = jsonObject.get("species").asJsonObject.get("name").asString
+        val speciesName = jsonObject.get("species").asJsonObject.get("name").asString
 
         var primaryType: PokemonType = PokemonType.NORMAL;
         var secondaryType: PokemonType? = null;
@@ -60,7 +59,7 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
             primaryType = primaryType,
             secondaryType = secondaryType,
             spriteUrl = spriteUrl,
-            speciesName = speciesNamme
+            speciesName = speciesName
         )
 
     }
@@ -84,11 +83,16 @@ class PokemonDeserializer : JsonDeserializer<Pokemon> {
     }
 
     private fun getSpriteUrl(jsonObject: JsonObject): String {
-        val sprite = jsonObject.get("sprites").asJsonObject
-            .get("other").asJsonObject
-            .get("official-artwork").asJsonObject
-            .get("front_default").asString
-        return sprite
+        try {
+            val sprite = jsonObject.get("sprites").asJsonObject
+                .get("other").asJsonObject
+                .get("official-artwork").asJsonObject
+                .get("front_default").asString
+            return sprite
+        } catch (e: Exception) {
+            return ""
+        }
+
     }
 
     private fun getTypeFromJsonObject(typeObj: JsonObject): PokemonType {

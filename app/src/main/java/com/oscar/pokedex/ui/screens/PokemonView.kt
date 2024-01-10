@@ -1,11 +1,13 @@
 package com.oscar.pokedex.ui.screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,18 +37,24 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
 
     val pokemon by viewModel.pokemon.observeAsState()
 
+
     if (pokemon == null) {
-        LoadingComponent(Modifier)
+        Column(
+            Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            LoadingComponent(Modifier.size(90.dp))
+
+        }
     }
-
     if (pokemon != null) {
-
         Scaffold(
             topBar = {
                 PokemonViewTopBar(pokemon!!) { navHost.navigate("PokemonList") }
             }
-        ) {
 
+        ) {
             Column(
                 Modifier
                     .verticalScroll(rememberScrollState())
@@ -54,7 +62,6 @@ fun PokemonView(viewModel: PokemonViewModel, navHost: NavHostController) {
                     .padding(top = it.calculateTopPadding()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-
 
                 PokemonSpriteView(pokemon!!)
 

@@ -19,7 +19,6 @@ class PokemonListApiRepositoryImpl @Inject constructor(): PokemonListRepository 
      * @return The PokemonList containing the list of Pokemon.
      */
     override suspend fun getPokemonList(): PokemonList {
-
         val pokemonList = PokemonApi.retrofitService.getPokemonList()
 
         getPokemonSpritesURL(pokemonList)

@@ -34,6 +34,7 @@ class PokemonListDeserializer : JsonDeserializer<PokemonList> {
         pokemonJsonList.forEach {
             val  name = it.asJsonObject.get("name").asString;
 
+
             pokemonListTmp.add(PokemonListItem(name = name));
         }
 
