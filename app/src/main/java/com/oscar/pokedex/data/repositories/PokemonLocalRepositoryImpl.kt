@@ -7,13 +7,10 @@ import javax.inject.Inject
 
 class PokemonLocalRepositoryImpl @Inject constructor (val pokemonFile: PokemonFile): PokemonRepository {
     override suspend fun getPokemon(name: String): Pokemon {
-        try {
             val pokemon = pokemonFile.getPokemonByName(name)
 
             return pokemon
-        } catch (e: IOException) {
 
-        }
 
     }
 
