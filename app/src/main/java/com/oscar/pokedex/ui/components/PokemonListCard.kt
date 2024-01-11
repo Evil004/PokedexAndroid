@@ -3,6 +3,7 @@ package com.oscar.pokedex.ui.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,6 +22,7 @@ fun PokemonListCard(
     pokemon: PokemonListItem,
     navController: NavHostController,
 ) {
+
     Card(
         Modifier
             .padding(10.dp)
@@ -40,6 +42,7 @@ fun PokemonListCard(
             } else {
                 SubcomposeAsyncImage(
                     pokemon.spriteUrl,
+                    error = { LoadingComponent(Modifier) },
                     loading = {LoadingComponent(Modifier)},
                     contentDescription = "",
                     modifier = Modifier

@@ -46,6 +46,7 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
                 viewModel.expandPokemonList()
             }
 
+
             LazyVerticalGrid(columns = GridCells.Fixed(3), state = state) {
                 items(pokemonList.list) { pokemon ->
                     PokemonListCard(pokemon = pokemon, navController)
@@ -64,6 +65,11 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
                 }
             }
 
+
+        }
+    }else{
+        Column (Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+            LoadingComponent(modifier = Modifier.size(100.dp))
 
         }
     }

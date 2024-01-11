@@ -21,21 +21,22 @@ class PokemonListApiRepositoryImpl @Inject constructor(): PokemonListRepository 
     override suspend fun getPokemonList(): PokemonList {
         val pokemonList = PokemonApi.retrofitService.getPokemonList()
 
-        getPokemonSpritesURL(pokemonList)
+        getPokemonExtraData(pokemonList)
 
         return pokemonList
 
     }
 
     override suspend fun getPokemonList(offset: Int): PokemonList {
+
         val pokemonList = PokemonApi.retrofitService.getPokemonList(offset)
 
-        getPokemonSpritesURL(pokemonList)
+        getPokemonExtraData(pokemonList)
 
         return pokemonList
     }
 
-    private suspend fun getPokemonSpritesURL(pokemonList: PokemonList) {
+    private suspend fun getPokemonExtraData(pokemonList: PokemonList) {
         for (pokemonItem in pokemonList.list) {
 
             CoroutineScope(Dispatchers.IO).launch {
