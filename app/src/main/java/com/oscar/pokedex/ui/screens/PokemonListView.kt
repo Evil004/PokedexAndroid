@@ -28,7 +28,6 @@ import com.oscar.pokedex.ui.viewmodels.PokemonListViewModel
 @Composable
 fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostController) {
     val pokemonListObserved by viewModel.pokemonList.observeAsState()
-
     if (pokemonListObserved != null) {
 
         Column(Modifier.fillMaxSize()) {
@@ -68,10 +67,7 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
 
         }
     }else{
-        Column (Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-            LoadingComponent(modifier = Modifier.size(100.dp))
-
-        }
+        WelcomeView()
     }
 }
 
