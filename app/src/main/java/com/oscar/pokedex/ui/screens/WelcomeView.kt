@@ -22,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.oscar.pokedex.R
 import com.oscar.pokedex.ui.components.LoadingComponent
+import com.oscar.pokedex.ui.components.LoadingPokeballComponent
 
 @Composable
 fun WelcomeView() {
@@ -30,18 +31,8 @@ fun WelcomeView() {
         verticalArrangement = Arrangement.Center
     ) {
         Image(painter = painterResource(id = R.drawable.pokedex_logo), contentDescription = "", Modifier.size(300.dp))
-        val infiniteTransition = rememberInfiniteTransition(label = "")
-        val angle by infiniteTransition.animateFloat(
-            initialValue = 0F,
-            targetValue = 360F,
-            animationSpec = infiniteRepeatable(
-                animation = tween(700, easing = FastOutSlowInEasing)
-            ), label = ""
-        )
-        Image(painter = painterResource(id = R.drawable.pokeball), contentDescription = "",
-            Modifier
-                .size(100.dp)
-                .rotate(angle))
+
+        LoadingPokeballComponent(modifier = Modifier.size(100.dp))
 
 
         Spacer(modifier = Modifier.size(100.dp))

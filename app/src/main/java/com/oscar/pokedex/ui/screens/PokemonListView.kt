@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.oscar.pokedex.ui.components.LoadingComponent
+import com.oscar.pokedex.ui.components.LoadingPokeballComponent
 import com.oscar.pokedex.ui.components.PokemonListCard
 import com.oscar.pokedex.ui.viewmodels.PokemonListViewModel
 
@@ -47,7 +48,7 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
 
 
             LazyVerticalGrid(columns = GridCells.Fixed(3), state = state) {
-                items(pokemonList.list) { pokemon ->
+                items(pokemonList.list.toList()) { pokemon ->
                     PokemonListCard(pokemon = pokemon, navController)
                 }
                 item(span = { GridItemSpan(3) }) {
@@ -58,7 +59,7 @@ fun PokemonListView(viewModel: PokemonListViewModel, navController: NavHostContr
                         verticalAlignment = Alignment.CenterVertically
                     ) {
 
-                        LoadingComponent(modifier = Modifier.size(40.dp))
+                        LoadingPokeballComponent(modifier = Modifier.size(40.dp))
                     }
 
                 }

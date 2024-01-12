@@ -19,7 +19,7 @@ class PokemonListLocalRepositoryImpl @Inject constructor (val pokemonFile: Pokem
     }
 
     override suspend fun getPokemonList(offset: Int): PokemonList {
-        val pokemonList = PokemonList(offset, mutableListOf())
+        val pokemonList = PokemonList(offset, mutableSetOf())
         return pokemonList;
     }
 
