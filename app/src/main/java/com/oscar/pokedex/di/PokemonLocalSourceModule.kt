@@ -9,7 +9,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class PokemonLocalModule {
+abstract class PokemonLocalSourceModule {
 
     @Binds
     abstract fun bindPokemonLocalDataSource(

@@ -9,7 +9,8 @@ import javax.inject.Inject
  * Implementation of PokemonRepository that fetches Pokemon data from an API.
  * This class utilizes PokemonApi to retrieve Pokemon information by name or ID.
  */
-class PokemonApiRepositoryImpl @Inject constructor(): PokemonRepository {
+class PokemonApiRepositoryImpl @Inject constructor(
+): PokemonRepository {
     /**
      * Retrieves a Pokemon by its name from the API.
      *
@@ -17,7 +18,8 @@ class PokemonApiRepositoryImpl @Inject constructor(): PokemonRepository {
      * @return The Pokemon object corresponding to the given name.
      */
     override suspend fun getPokemon(name: String): Pokemon {
-        return PokemonApi.retrofitService.getPokemonByName(name)
+            return PokemonApi.retrofitService.getPokemonByName(name)
+
     }
 
 

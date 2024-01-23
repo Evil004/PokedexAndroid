@@ -2,7 +2,7 @@ package com.oscar.pokedex.domain.models
 
 data class PokemonList(
     var offset: Int? = null,
-    val list: MutableList<PokemonListItem>
+    val list: MutableSet<PokemonListItem>
 )
 
 data class PokemonListItem(

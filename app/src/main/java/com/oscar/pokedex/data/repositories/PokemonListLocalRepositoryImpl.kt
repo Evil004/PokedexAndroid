@@ -1,8 +1,12 @@
 package com.oscar.pokedex.data.repositories
 
 import com.oscar.pokedex.data.sources.local.PokemonFile
+import com.oscar.pokedex.data.sources.remote.api.PokemonApi
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PokemonListLocalRepositoryImpl @Inject constructor (val pokemonFile: PokemonFile):
@@ -15,16 +19,19 @@ class PokemonListLocalRepositoryImpl @Inject constructor (val pokemonFile: Pokem
     }
 
     override suspend fun getPokemonList(offset: Int): PokemonList {
-        val pokemonList = PokemonList(offset, mutableListOf())
+        val pokemonList = PokemonList(offset, mutableSetOf())
         return pokemonList;
     }
 
 
     private suspend fun getPokemonSpritesURL(pokemonList: PokemonList) {
         for (pokemonItem in pokemonList.list) {
-            val pokemon = pokemonFile.getPokemonByName(name = pokemonItem.name)
+            CoroutineScope(Dispatchers.IO).launch {
+                val pokemon = pokemonFile.getPokemonByName(name = pokemonItem.name)
 
-            pokemonItem.spriteUrl = pokemon.spriteUrl
+                pokemonItem.speciesName = pokemon.speciesName
+                pokemonItem.spriteUrl = pokemon.spriteUrl
+            }
         }
     }
 }

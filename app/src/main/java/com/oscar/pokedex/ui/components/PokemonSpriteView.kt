@@ -38,13 +38,13 @@ fun PokemonSpriteView(pokemon: Pokemon) {
 
         SubcomposeAsyncImage(
             pokemon.spriteUrl,
+            error = { LoadingComponent(Modifier.size(150.dp)) },
             loading = {
                 LoadingComponent(Modifier.size(150.dp))
             },
             contentDescription = "",
             modifier = Modifier
-                .padding(30.dp)
-            ,
+                .padding(30.dp),
         )
     }
 }
