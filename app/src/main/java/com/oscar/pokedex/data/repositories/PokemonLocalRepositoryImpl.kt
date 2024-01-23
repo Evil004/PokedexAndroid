@@ -1,6 +1,6 @@
 package com.oscar.pokedex.data.repositories
 
-import com.oscar.pokedex.data.sources.local.PokemonFile
+import com.oscar.pokedex.data.sources.local.json.PokemonFile
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.repositories.PokemonRepository
 import javax.inject.Inject

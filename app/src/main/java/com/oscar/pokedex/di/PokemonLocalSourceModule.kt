@@ -1,7 +1,7 @@
 package com.oscar.pokedex.di
 
-import com.oscar.pokedex.data.sources.local.PokemonFile
-import com.oscar.pokedex.data.sources.local.PokemonLocalDataSource
+import com.oscar.pokedex.data.sources.local.json.PokemonFile
+import com.oscar.pokedex.data.sources.local.json.PokemonLocalDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.oscar.pokedex.data.sources.local
+package com.oscar.pokedex.data.sources.local.json
 
 import android.content.Context
 import com.google.gson.GsonBuilder
@@ -10,7 +10,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.InputStream
 import javax.inject.Inject
 
-class PokemonLocalDataSource @Inject constructor (@ApplicationContext val context: Context) : PokemonFile
+class PokemonLocalDataSource @Inject constructor (@ApplicationContext val context: Context) :
+    PokemonFile
 {
 
     private val gson = GsonBuilder()

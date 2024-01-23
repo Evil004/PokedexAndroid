@@ -2,6 +2,7 @@ package com.oscar.pokedex.data.repositories
 
 import com.oscar.pokedex.data.sources.local.PokemonFile
 import com.oscar.pokedex.data.sources.remote.api.PokemonApi
+import com.oscar.pokedex.data.sources.local.json.PokemonFile
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
 import kotlinx.coroutines.CoroutineScope

@@ -1,4 +1,4 @@
-package com.oscar.pokedex.data.sources.local
+package com.oscar.pokedex.data.sources.local.json
 
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
