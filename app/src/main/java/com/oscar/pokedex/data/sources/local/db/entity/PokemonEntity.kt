@@ -7,7 +7,7 @@ import com.oscar.pokedex.domain.models.PokemonType
 import com.oscar.pokedex.domain.models.Stat
 
 @Entity(tableName = "pokemon")
-class PokemonEntity (
+class PokemonEntity(
     @PrimaryKey(autoGenerate = false) val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "species_name") val speciesName: String,
@@ -15,6 +15,5 @@ class PokemonEntity (
     @ColumnInfo(name = "weight") val weight: Float,
     @ColumnInfo(name = "height") val height: Float,
     @ColumnInfo(name = "primary_type") val primaryType: String,
-    @ColumnInfo(name = "secondary_type") val secondaryType: PokemonType?,
-
-    )
+    @ColumnInfo(name = "secondary_type") val secondaryType: String?,
+)

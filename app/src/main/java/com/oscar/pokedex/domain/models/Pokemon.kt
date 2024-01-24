@@ -17,5 +17,5 @@ data class Pokemon(
     val weight: Float,
     val height: Float,
 
-    val statsMap: Map<Stat, Int>,
+    var statsMap: Map<Stat, Int>,
 )

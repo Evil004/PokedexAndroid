@@ -1,6 +1,7 @@
 package com.oscar.pokedex.data.repositories
 
-import com.oscar.pokedex.data.mappers.PokemonEntityModelMapper
+import com.oscar.pokedex.data.mappers.PokemonEntityToPokemonModelMapper
+import com.oscar.pokedex.data.mappers.PokemonStatMapper
 import com.oscar.pokedex.data.sources.local.db.AppDatabase
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.repositories.PokemonRepository
@@ -11,6 +12,11 @@ class PokemonRoomRepository @Inject constructor(val appDatabase: AppDatabase): P
 
         val pokemonEntity = appDatabase.pokemonDao().findByName(name)
 
-        return PokemonEntityModelMapper.map(pokemonEntity)
+        val pokemonStats = appDatabase.pokemonStatDao().getStatsOfPokemon(pokemonEntity.id)
+
+        val pokemon = PokemonEntityToPokemonModelMapper.map(pokemonEntity)
+        pokemon.statsMap = PokemonStatMapper.map(pokemonStats)
+
+        return pokemon
     }
 }

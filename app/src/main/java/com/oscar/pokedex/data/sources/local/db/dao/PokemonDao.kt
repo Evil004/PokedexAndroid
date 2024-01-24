@@ -2,7 +2,9 @@ package com.oscar.pokedex.data.sources.local.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import com.oscar.pokedex.data.sources.local.db.entity.PokemonEntity
 
 @Dao
@@ -16,8 +18,9 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon WHERE name LIKE :name LIMIT 1")
     fun findByName(name: String): PokemonEntity
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(pokemonEntity: PokemonEntity)
+
 
     //fun delete(pokemonEntity: PokemonEntity)
 }
