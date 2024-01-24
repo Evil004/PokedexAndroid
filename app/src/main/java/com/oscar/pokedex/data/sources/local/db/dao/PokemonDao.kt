@@ -17,7 +17,7 @@ interface PokemonDao {
     fun findByName(name: String): PokemonEntity
 
     @Insert
-    fun insertAll(vararg pokemonEntity: PokemonEntity)
+    fun insert(pokemonEntity: PokemonEntity)
 
     //fun delete(pokemonEntity: PokemonEntity)
 }

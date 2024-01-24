@@ -2,22 +2,34 @@ package com.oscar.pokedex.data.repositories
 
 import com.oscar.pokedex.data.mappers.PokemonEntityModelMapper
 import com.oscar.pokedex.data.sources.local.db.AppDatabase
-import com.oscar.pokedex.data.sources.local.db.entity.PokemonEntity
 import com.oscar.pokedex.domain.models.Pokemon
-import com.oscar.pokedex.domain.models.PokemonType
 import com.oscar.pokedex.domain.repositories.PokemonRepository
 import javax.inject.Inject
 
-class PokemonWithFallBackRepositoryImpl @Inject constructor(
-    val pokemonLocalRepositoryImpl: PokemonLocalRepositoryImpl,
+class PokemonApiWithDBImpl @Inject constructor(
     val pokemonApiRepositoryImpl: PokemonApiRepositoryImpl,
+    val appDatabase: AppDatabase
 ) : PokemonRepository {
 
     override suspend fun getPokemon(name: String): Pokemon {
         val pokemon = try {
-            pokemonApiRepositoryImpl.getPokemon(name)
+            val pokemonEntity = appDatabase.pokemonDao().findByName(name)
+
+            PokemonEntityModelMapper.map(pokemonEntity)
+
         } catch (e: Exception) {
-            pokemonLocalRepositoryImpl.getPokemon(name)
+            val pokemonModel = pokemonApiRepositoryImpl.getPokemon(name)
+
+
+            // Save the pokemon in the database
+            try {
+                appDatabase.pokemonDao().insert(PokemonEntityModelMapper.map(pokemonModel))
+
+            } catch (e: Exception) {
+                // Do nothing
+            }
+
+            pokemonModel
         }
 
 
