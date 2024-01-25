@@ -11,7 +11,7 @@ import java.io.InputStream
 import javax.inject.Inject
 
 class PokemonLocalDataSource @Inject constructor (@ApplicationContext val context: Context) :
-    PokemonFile
+    PokemonLocalSource
 {
 
     private val gson = GsonBuilder()

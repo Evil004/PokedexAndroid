@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -25,39 +26,38 @@ class PokedexApp : Application()
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val pokemonViewModel: PokemonViewModel by viewModels()
+    private val pokemonListViewModel: PokemonListViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PokedexTheme {
-                val pokemonViewModel: PokemonViewModel by viewModels()
-                val pokemonListViewModel: PokemonListViewModel by viewModels()
-
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val navController = rememberNavController()
+                    SetupNavigation()
+                }
+            }
+        }
+    }
 
-                    NavHost(navController = navController, startDestination = "PokemonList") {
-                        composable("PokemonList") {
-                            PokemonListView(
-                                viewModel = pokemonListViewModel,
-                                navController
-                            )
-                        }
-                        composable(
-                            "PokemonView/{pokemon}",
-                        ) {
-                            val pokemon = it.arguments?.getString("pokemon")
+    @Composable
+    private fun SetupNavigation() {
+        val navController = rememberNavController()
 
-                            pokemon?.let {
-                                pokemonViewModel.setPokemonAndGetData(pokemon)
-                                PokemonView(viewModel = pokemonViewModel, navController)
 
-                            }
+        NavHost(navController = navController, startDestination = "PokemonList") {
+            composable("PokemonList") {
+                PokemonListView(viewModel = pokemonListViewModel, navController)
+            }
+            composable("PokemonView/{pokemon}") {
+                it.arguments?.getString("pokemon")?.let { pokemon ->
 
-                        }
-                    }
+                        pokemonViewModel.updatePokemonAndFetchData(pokemon)
+
+                        PokemonView(viewModel = pokemonViewModel, navController)
 
                 }
             }

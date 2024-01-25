@@ -7,6 +7,7 @@ import com.oscar.pokedex.domain.models.PokemonList
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/*
 object PokemonApi {
 
     val gson = GsonBuilder()
@@ -24,4 +25,4 @@ object PokemonApi {
 
     }
 
-}
+}*/

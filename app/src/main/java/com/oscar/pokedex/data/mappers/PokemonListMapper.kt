@@ -14,10 +14,9 @@ object PokemonListMapper {
                 speciesName = pokemonEntity.speciesName
             )
         }.toMutableSet()
-        val pokemonList = PokemonList(list = pokemonListItems)
 
 
-        return pokemonList
+        return PokemonList(list = pokemonListItems)
     }
 
 }

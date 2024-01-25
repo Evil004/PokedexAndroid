@@ -27,6 +27,8 @@ fun PokemonListCard(
             .padding(10.dp)
             .height(150.dp)
             .clickable {
+                println("CardClicada!")
+
                 navController.navigate("PokemonView/${pokemon.name}")
             }) {
         Column( Modifier.fillMaxSize(),

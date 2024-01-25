@@ -26,14 +26,19 @@ class PokemonViewModel @Inject constructor(
     private var _pokemon: MutableLiveData<Pokemon> = MutableLiveData(null);
     val pokemon: LiveData<Pokemon> = _pokemon
 
-
+    private var lastPokemonName: String = ""
 
     /**
      *  Updtates the pokemon name and triggers the call to fetch
      *  the data of the Pokemon.
      *  @param pokemonName the name of the Pokemon to fetch
      */
-    fun setPokemonAndGetData(pokemonName: String) {
+    fun updatePokemonAndFetchData(pokemonName: String) {
+        if (lastPokemonName == pokemonName) {
+            return
+        }
+        lastPokemonName = pokemonName
+
         _pokemon.postValue(null)
         getPokemonData(pokemonName)
     }
@@ -43,8 +48,11 @@ class PokemonViewModel @Inject constructor(
      */
     private fun getPokemonData(pokemonName: String) {
 
+
         viewModelScope.launch {
+
             val pokemon = withContext(Dispatchers.IO) {
+
                 val pokemon = getPokemonUseCase.getPokemon(pokemonName)
                 pokemon
             }

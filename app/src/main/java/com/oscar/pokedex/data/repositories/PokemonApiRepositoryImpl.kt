@@ -1,6 +1,6 @@
 package com.oscar.pokedex.data.repositories
 
-import com.oscar.pokedex.data.sources.remote.api.PokemonApi
+import com.oscar.pokedex.data.sources.remote.api.PokemonApiService
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.repositories.PokemonRepository
 import javax.inject.Inject
@@ -10,6 +10,7 @@ import javax.inject.Inject
  * This class utilizes PokemonApi to retrieve Pokemon information by name or ID.
  */
 class PokemonApiRepositoryImpl @Inject constructor(
+    val pokemonApi: PokemonApiService
 ): PokemonRepository {
     /**
      * Retrieves a Pokemon by its name from the API.
@@ -18,7 +19,7 @@ class PokemonApiRepositoryImpl @Inject constructor(
      * @return The Pokemon object corresponding to the given name.
      */
     override suspend fun getPokemon(name: String): Pokemon {
-            return PokemonApi.retrofitService.getPokemonByName(name)
+            return pokemonApi.getPokemonByName(name)
 
     }
 

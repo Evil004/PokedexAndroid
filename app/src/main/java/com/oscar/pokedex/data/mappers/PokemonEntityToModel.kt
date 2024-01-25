@@ -15,7 +15,7 @@ object PokemonEntityToPokemonModelMapper {
         val spriteUrl = pokemon.spriteUrl
         val id = pokemon.id
         val primaryType = PokemonType.valueOf(pokemon.primaryType)
-        val seconddaryType = pokemon.secondaryType?.let { PokemonType.valueOf(it) }
+        val secondaryType = pokemon.secondaryType?.let { PokemonType.valueOf(it) }
 
 
         val statMap = mutableMapOf<Stat, Int>()
@@ -33,7 +33,7 @@ object PokemonEntityToPokemonModelMapper {
             spriteUrl = spriteUrl,
             id = id,
             primaryType = primaryType,
-            secondaryType = seconddaryType,
+            secondaryType = secondaryType,
             statsMap = statMap,
             height = height,
             weight = weight
