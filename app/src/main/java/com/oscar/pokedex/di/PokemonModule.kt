@@ -1,9 +1,6 @@
 package com.oscar.pokedex.di
 
-import com.oscar.pokedex.data.repositories.PokemonApiRepositoryImpl
-import com.oscar.pokedex.data.repositories.PokemonApiWithDBImpl
-import com.oscar.pokedex.data.repositories.PokemonLocalRepositoryImpl
-import com.oscar.pokedex.data.repositories.PokemonWithFallBackRepositoryImpl
+import com.oscar.pokedex.data.repositories.PokemonApiWithRoomImpl
 import com.oscar.pokedex.domain.repositories.PokemonRepository
 import dagger.Binds
 import dagger.Module
@@ -16,7 +13,7 @@ abstract class PokemonApiModule {
 
     @Binds
     abstract fun bindPokemonRepository(
-        analyticsServiceImpl: PokemonApiWithDBImpl
+        analyticsServiceImpl: PokemonApiWithRoomImpl
     ): PokemonRepository
 }
 

@@ -7,7 +7,7 @@ import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.repositories.PokemonRepository
 import javax.inject.Inject
 
-class PokemonApiWithDBImpl @Inject constructor(
+class PokemonApiWithRoomImpl @Inject constructor(
     val pokemonApiRepositoryImpl: PokemonApiRepositoryImpl,
     val pokemonRoomRepository: PokemonRoomRepository,
     val appDatabase: AppDatabase

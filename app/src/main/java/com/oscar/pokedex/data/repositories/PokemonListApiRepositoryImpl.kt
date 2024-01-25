@@ -27,9 +27,9 @@ class PokemonListApiRepositoryImpl @Inject constructor(): PokemonListRepository 
 
     }
 
-    override suspend fun getPokemonList(offset: Int): PokemonList {
+    override suspend fun getPokemonList(start: Int): PokemonList {
 
-        val pokemonList = PokemonApi.retrofitService.getPokemonList(offset)
+        val pokemonList = PokemonApi.retrofitService.getPokemonList(start)
 
         getPokemonExtraData(pokemonList)
 

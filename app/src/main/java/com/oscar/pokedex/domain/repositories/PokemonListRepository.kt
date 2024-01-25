@@ -13,6 +13,6 @@ interface PokemonListRepository {
      */
     suspend fun getPokemonList(): PokemonList
 
-    suspend fun getPokemonList(offset: Int): PokemonList
+    suspend fun getPokemonList(start: Int): PokemonList
 
 }

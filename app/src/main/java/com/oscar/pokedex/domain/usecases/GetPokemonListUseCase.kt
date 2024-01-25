@@ -12,7 +12,6 @@ import javax.inject.Inject
  */
 class GetPokemonListUseCase @Inject constructor(
     private val repository: PokemonListRepository,
-    val pokemonFile: PokemonListLocalRepositoryImpl
 ) {
     /**
      * Retrieves a list of Pokémon.
@@ -20,12 +19,7 @@ class GetPokemonListUseCase @Inject constructor(
      * @return The PokemonList containing the list of Pokémon.
      */
     suspend fun getPokemonList(): PokemonList {
-        try {
-
-            return repository.getPokemonList()
-        } catch (e: Exception) {
-            return pokemonFile.getPokemonList()
-        }
+        return repository.getPokemonList()
     }
 
     /**
