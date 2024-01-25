@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import com.oscar.pokedex.data.sources.local.db.entity.PokemonEntity
 
 const val DEFAULT_LIMIT = 51

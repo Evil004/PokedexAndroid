@@ -3,7 +3,6 @@ package com.oscar.pokedex.data.sources.local.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "pokemon_stat",

@@ -1,9 +1,7 @@
 package com.oscar.pokedex.data.repositories
 
-import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonList
 import com.oscar.pokedex.domain.repositories.PokemonListRepository
-import com.oscar.pokedex.domain.repositories.PokemonRepository
 import javax.inject.Inject
 
 class PokemonListWithFallBackRepositoryImpl @Inject constructor(

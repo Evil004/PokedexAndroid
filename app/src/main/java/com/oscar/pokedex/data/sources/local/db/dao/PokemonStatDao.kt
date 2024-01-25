@@ -1,7 +1,6 @@
 package com.oscar.pokedex.data.sources.local.db.dao
 
 import androidx.room.Dao
-import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert

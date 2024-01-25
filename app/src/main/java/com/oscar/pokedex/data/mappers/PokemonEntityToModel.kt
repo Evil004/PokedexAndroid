@@ -2,8 +2,6 @@ package com.oscar.pokedex.data.mappers
 
 
 import com.oscar.pokedex.data.sources.local.db.entity.PokemonEntity
-import com.oscar.pokedex.data.sources.local.db.entity.PokemonStatEntity
-import com.oscar.pokedex.data.sources.local.db.relations.PokemonWithStats
 import com.oscar.pokedex.domain.models.Pokemon
 import com.oscar.pokedex.domain.models.PokemonType
 import com.oscar.pokedex.domain.models.Stat

@@ -3,8 +3,6 @@ package com.oscar.pokedex.data.sources.local.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.oscar.pokedex.domain.models.PokemonType
-import com.oscar.pokedex.domain.models.Stat
 
 @Entity(tableName = "pokemon")
 class PokemonEntity(
